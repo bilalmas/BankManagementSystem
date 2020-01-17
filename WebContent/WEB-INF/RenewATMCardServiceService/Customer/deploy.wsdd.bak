@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from RenewATMCardServiceService WSDL service -->
+
+  <service name="RenewATMCardService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://Customer"/>
+      <parameter name="wsdlServiceElement" value="RenewATMCardServiceService"/>
+      <parameter name="schemaQualified" value="http://Customer"/>
+      <parameter name="wsdlServicePort" value="RenewATMCardService"/>
+      <parameter name="className" value="Customer.RenewATMCardServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="RenewATMCardService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="renewATMCardService" qname="operNS:renewATMCardService" xmlns:operNS="http://Customer" returnQName="retNS:renewATMCardServiceReturn" xmlns:retNS="http://Customer" returnType="rtns:RenewATMCardOutput" xmlns:rtns="http://Customer" soapAction="" >
+        <parameter qname="pns:input" xmlns:pns="http://Customer" type="tns:RenewATMCardInput" xmlns:tns="http://Customer"/>
+      </operation>
+      <parameter name="allowedMethods" value="renewATMCardService"/>
+
+      <typeMapping
+        xmlns:ns="http://Customer"
+        qname="ns:RenewATMCardOutput"
+        type="java:Customer.RenewATMCardOutput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://Customer"
+        qname="ns:RenewATMCardInput"
+        type="java:Customer.RenewATMCardInput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

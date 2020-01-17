@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from WithdrawMoneyServiceService WSDL service -->
+
+  <service name="WithdrawMoneyService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://account_teller"/>
+      <parameter name="wsdlServiceElement" value="WithdrawMoneyServiceService"/>
+      <parameter name="schemaQualified" value="http://account_teller"/>
+      <parameter name="wsdlServicePort" value="WithdrawMoneyService"/>
+      <parameter name="className" value="account_teller.WithdrawMoneyService"/>
+      <parameter name="wsdlPortType" value="WithdrawMoneyService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://account_teller" xmlns:retNS="http://account_teller" xmlns:rtns="http://account_teller" name="withdrawMoneyService" qname="operNS:withdrawMoneyService" returnQName="retNS:withdrawMoneyServiceReturn" returnType="rtns:WithdrawMoneyOutput" soapAction="">
+        <parameter xmlns:pns="http://account_teller" xmlns:tns="http://account_teller" qname="pns:input" type="tns:WithdrawMoneyInput"/>
+      </operation>
+      <parameter name="allowedMethods" value="withdrawMoneyService"/>
+
+      <typeMapping xmlns:ns="http://account_teller" qname="ns:WithdrawMoneyOutput" type="java:account_teller.WithdrawMoneyOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://account_teller" qname="ns:WithdrawMoneyInput" type="java:account_teller.WithdrawMoneyInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

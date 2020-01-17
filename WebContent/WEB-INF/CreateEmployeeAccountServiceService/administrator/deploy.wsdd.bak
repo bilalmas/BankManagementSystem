@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CreateEmployeeAccountServiceService WSDL service -->
+
+  <service name="CreateEmployeeAccountService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://administrator"/>
+      <parameter name="wsdlServiceElement" value="CreateEmployeeAccountServiceService"/>
+      <parameter name="schemaQualified" value="http://administrator"/>
+      <parameter name="wsdlServicePort" value="CreateEmployeeAccountService"/>
+      <parameter name="className" value="administrator.CreateEmployeeAccountServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="CreateEmployeeAccountService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="createEmployeeAccountService" qname="operNS:createEmployeeAccountService" xmlns:operNS="http://administrator" returnQName="retNS:createEmployeeAccountServiceReturn" xmlns:retNS="http://administrator" returnType="rtns:CreateEmployeeAccountOutput" xmlns:rtns="http://administrator" soapAction="" >
+        <parameter qname="pns:input" xmlns:pns="http://administrator" type="tns:CreateEmployeeAccountInput" xmlns:tns="http://administrator"/>
+      </operation>
+      <parameter name="allowedMethods" value="createEmployeeAccountService"/>
+
+      <typeMapping
+        xmlns:ns="http://administrator"
+        qname="ns:CreateEmployeeAccountOutput"
+        type="java:administrator.CreateEmployeeAccountOutput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://administrator"
+        qname="ns:CreateEmployeeAccountInput"
+        type="java:administrator.CreateEmployeeAccountInput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

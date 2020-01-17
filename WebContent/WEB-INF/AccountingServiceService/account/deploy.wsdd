@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AccountingServiceService WSDL service -->
+
+  <service name="AccountingService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://account"/>
+      <parameter name="wsdlServiceElement" value="AccountingServiceService"/>
+      <parameter name="schemaQualified" value="http://account"/>
+      <parameter name="wsdlServicePort" value="AccountingService"/>
+      <parameter name="className" value="account.AccountingService"/>
+      <parameter name="wsdlPortType" value="AccountingService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://account" xmlns:retNS="http://account" xmlns:rtns="http://account" name="createAccount" qname="operNS:createAccount" returnQName="retNS:createAccountReturn" returnType="rtns:CreateAccountOutput" soapAction="">
+        <parameter xmlns:pns="http://account" xmlns:tns="http://account" qname="pns:input" type="tns:CreateAccountInput"/>
+      </operation>
+      <parameter name="allowedMethods" value="createAccount"/>
+
+      <typeMapping xmlns:ns="http://account" qname="ns:CreateAccountInput" type="java:account.CreateAccountInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://account" qname="ns:CreateAccountOutput" type="java:account.CreateAccountOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://Customer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://Customer" xmlns:intf="http://Customer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://Customer" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="payBillService">
+    <complexType>
+     <sequence>
+      <element name="input" type="impl:PayBillInput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="PayBillInput">
+    <sequence>
+     <element name="account_no" type="xsd:int"/>
+     <element name="bill_amount" type="xsd:int"/>
+     <element name="bill_account_no" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <element name="payBillServiceResponse">
+    <complexType>
+     <sequence>
+      <element name="payBillServiceReturn" type="impl:PayBillOutput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="PayBillOutput">
+    <sequence>
+     <element name="response" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="payBillServiceRequest">
+
+      <wsdl:part element="impl:payBillService" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="payBillServiceResponse">
+
+      <wsdl:part element="impl:payBillServiceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PayBillService">
+
+      <wsdl:operation name="payBillService">
+
+         <wsdl:input message="impl:payBillServiceRequest" name="payBillServiceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:payBillServiceResponse" name="payBillServiceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PayBillServiceSoapBinding" type="impl:PayBillService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="payBillService">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="payBillServiceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="payBillServiceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PayBillServiceService">
+
+      <wsdl:port binding="impl:PayBillServiceSoapBinding" name="PayBillService">
+
+         <wsdlsoap:address location="http://localhost:8080/bankingWS/services/PayBillService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

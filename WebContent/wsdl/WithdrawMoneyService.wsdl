@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://account_teller" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://account_teller" xmlns:intf="http://account_teller" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://account_teller" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="withdrawMoneyService">
+    <complexType>
+     <sequence>
+      <element name="input" type="impl:WithdrawMoneyInput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WithdrawMoneyInput">
+    <sequence>
+     <element name="account_no" type="xsd:int"/>
+     <element name="withdraw_amount" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <element name="withdrawMoneyServiceResponse">
+    <complexType>
+     <sequence>
+      <element name="withdrawMoneyServiceReturn" type="impl:WithdrawMoneyOutput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WithdrawMoneyOutput">
+    <sequence>
+     <element name="response" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="withdrawMoneyServiceResponse">
+
+      <wsdl:part element="impl:withdrawMoneyServiceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="withdrawMoneyServiceRequest">
+
+      <wsdl:part element="impl:withdrawMoneyService" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="WithdrawMoneyService">
+
+      <wsdl:operation name="withdrawMoneyService">
+
+         <wsdl:input message="impl:withdrawMoneyServiceRequest" name="withdrawMoneyServiceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:withdrawMoneyServiceResponse" name="withdrawMoneyServiceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WithdrawMoneyServiceSoapBinding" type="impl:WithdrawMoneyService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="withdrawMoneyService">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="withdrawMoneyServiceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="withdrawMoneyServiceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WithdrawMoneyServiceService">
+
+      <wsdl:port binding="impl:WithdrawMoneyServiceSoapBinding" name="WithdrawMoneyService">
+
+         <wsdlsoap:address location="http://localhost:8080/bankingWS/services/WithdrawMoneyService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

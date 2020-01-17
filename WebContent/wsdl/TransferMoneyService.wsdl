@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://Customer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://Customer" xmlns:intf="http://Customer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://Customer" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="transferMoneyService">
+    <complexType>
+     <sequence>
+      <element name="input" type="impl:TransferMoneyInput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="TransferMoneyInput">
+    <sequence>
+     <element name="account_no" type="xsd:int"/>
+     <element name="amount" type="xsd:int"/>
+     <element name="other_account_no" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <element name="transferMoneyServiceResponse">
+    <complexType>
+     <sequence>
+      <element name="transferMoneyServiceReturn" type="impl:TransferMoneyOutput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="TransferMoneyOutput">
+    <sequence>
+     <element name="response" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="transferMoneyServiceRequest">
+
+      <wsdl:part element="impl:transferMoneyService" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="transferMoneyServiceResponse">
+
+      <wsdl:part element="impl:transferMoneyServiceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="TransferMoneyService">
+
+      <wsdl:operation name="transferMoneyService">
+
+         <wsdl:input message="impl:transferMoneyServiceRequest" name="transferMoneyServiceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:transferMoneyServiceResponse" name="transferMoneyServiceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TransferMoneyServiceSoapBinding" type="impl:TransferMoneyService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="transferMoneyService">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="transferMoneyServiceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="transferMoneyServiceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TransferMoneyServiceService">
+
+      <wsdl:port binding="impl:TransferMoneyServiceSoapBinding" name="TransferMoneyService">
+
+         <wsdlsoap:address location="http://localhost:8080/bankingWS/services/TransferMoneyService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

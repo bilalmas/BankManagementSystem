@@ -1,0 +1,203 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="E:\LUMS\Fall 19\Sproj\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\bankingWS\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="RemoveEmployeeAccountService" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="removeEmployeeAccountService" qname="ns1:removeEmployeeAccountService" returnQName="ns1:removeEmployeeAccountServiceReturn" returnType="ns1:RemoveEmployeeAccountOutput" soapAction="" xmlns:ns1="http://administrator" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:input" type="ns1:RemoveEmployeeAccountInput"/>
+  </ns2:operation>
+  <ns1:parameter name="allowedMethods" value="removeEmployeeAccountService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="RemoveEmployeeAccountService"/>
+  <ns1:parameter name="className" value="administrator.RemoveEmployeeAccountService"/>
+  <ns1:parameter name="wsdlServicePort" value="RemoveEmployeeAccountService"/>
+  <ns1:parameter name="schemaQualified" value="http://administrator"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://administrator"/>
+  <ns1:parameter name="wsdlServiceElement" value="RemoveEmployeeAccountServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns2:RemoveEmployeeAccountOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:administrator.RemoveEmployeeAccountOutput" xmlns:ns2="http://administrator"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns3:RemoveEmployeeAccountInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:administrator.RemoveEmployeeAccountInput" xmlns:ns3="http://administrator"/>
+ </ns1:service>
+ <ns1:service name="GenerateBankStatementService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="generateBankStatementService" qname="ns4:generateBankStatementService" returnQName="ns4:generateBankStatementServiceReturn" returnType="ns4:GenerateBankStatementOutput" soapAction="" xmlns:ns4="http://Customer">
+   <ns1:parameter qname="ns4:input" type="ns4:GenerateBankStatementInput"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="generateBankStatementService"/>
+  <ns1:parameter name="wsdlPortType" value="GenerateBankStatementService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://Customer"/>
+  <ns1:parameter name="wsdlServicePort" value="GenerateBankStatementService"/>
+  <ns1:parameter name="className" value="Customer.GenerateBankStatementService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://Customer"/>
+  <ns1:parameter name="wsdlServiceElement" value="GenerateBankStatementServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns5:GenerateBankStatementOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:Customer.GenerateBankStatementOutput" xmlns:ns5="http://Customer"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:GenerateBankStatementInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:Customer.GenerateBankStatementInput" xmlns:ns6="http://Customer"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="DummyService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="add" qname="ns7:add" returnQName="ns7:addReturn" returnType="xsd:int" soapAction="" xmlns:ns7="http://account" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:a" type="xsd:int"/>
+   <ns1:parameter qname="ns7:b" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="DummyService"/>
+  <ns1:parameter name="schemaQualified" value="http://account"/>
+  <ns1:parameter name="className" value="account.DummyService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="add"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://account"/>
+  <ns1:parameter name="wsdlServiceElement" value="DummyServiceService"/>
+  <ns1:parameter name="wsdlPortType" value="DummyService"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+ </ns1:service>
+ <ns1:service name="ActivateOnlineBankService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="activateOnlineBanking" qname="ns8:activateOnlineBanking" returnQName="ns8:activateOnlineBankingReturn" returnType="ns8:ActivateOnlineBankOutput" soapAction="" xmlns:ns8="http://Customer">
+   <ns1:parameter qname="ns8:input" type="ns8:ActivateOnlineBankInput"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="activateOnlineBanking"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="ActivateOnlineBankService"/>
+  <ns1:parameter name="className" value="Customer.ActivateOnlineBankService"/>
+  <ns1:parameter name="wsdlServicePort" value="ActivateOnlineBankService"/>
+  <ns1:parameter name="schemaQualified" value="http://Customer"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://Customer"/>
+  <ns1:parameter name="wsdlServiceElement" value="ActivateOnlineBankServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:ActivateOnlineBankInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:Customer.ActivateOnlineBankInput" xmlns:ns9="http://Customer"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns10:ActivateOnlineBankOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:Customer.ActivateOnlineBankOutput" xmlns:ns10="http://Customer"/>
+ </ns1:service>
+ <ns1:service name="RenewATMCardService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="renewATMCardService" qname="ns11:renewATMCardService" returnQName="ns11:renewATMCardServiceReturn" returnType="ns11:RenewATMCardOutput" soapAction="" xmlns:ns11="http://Customer">
+   <ns1:parameter qname="ns11:input" type="ns11:RenewATMCardInput"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="renewATMCardService"/>
+  <ns1:parameter name="wsdlPortType" value="RenewATMCardService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://Customer"/>
+  <ns1:parameter name="wsdlServicePort" value="RenewATMCardService"/>
+  <ns1:parameter name="className" value="Customer.RenewATMCardService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://Customer"/>
+  <ns1:parameter name="wsdlServiceElement" value="RenewATMCardServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:RenewATMCardOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:Customer.RenewATMCardOutput" xmlns:ns12="http://Customer"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:RenewATMCardInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:Customer.RenewATMCardInput" xmlns:ns13="http://Customer"/>
+ </ns1:service>
+ <ns1:service name="DepositMoneyService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="depositMoneyService" qname="ns14:depositMoneyService" returnQName="ns14:depositMoneyServiceReturn" returnType="ns14:DepositMoneyOutput" soapAction="" xmlns:ns14="http://account_teller">
+   <ns1:parameter qname="ns14:input" type="ns14:DepositMoneyInput"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="depositMoneyService"/>
+  <ns1:parameter name="wsdlPortType" value="DepositMoneyService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://account_teller"/>
+  <ns1:parameter name="wsdlServicePort" value="DepositMoneyService"/>
+  <ns1:parameter name="className" value="account_teller.DepositMoneyService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://account_teller"/>
+  <ns1:parameter name="wsdlServiceElement" value="DepositMoneyServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns15:DepositMoneyInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:account_teller.DepositMoneyInput" xmlns:ns15="http://account_teller"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:DepositMoneyOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:account_teller.DepositMoneyOutput" xmlns:ns16="http://account_teller"/>
+ </ns1:service>
+ <ns1:service name="CreateEmployeeAccountService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="createEmployeeAccountService" qname="ns17:createEmployeeAccountService" returnQName="ns17:createEmployeeAccountServiceReturn" returnType="ns17:CreateEmployeeAccountOutput" soapAction="" xmlns:ns17="http://administrator">
+   <ns1:parameter qname="ns17:input" type="ns17:CreateEmployeeAccountInput"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="createEmployeeAccountService"/>
+  <ns1:parameter name="wsdlPortType" value="CreateEmployeeAccountService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://administrator"/>
+  <ns1:parameter name="wsdlServicePort" value="CreateEmployeeAccountService"/>
+  <ns1:parameter name="className" value="administrator.CreateEmployeeAccountService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://administrator"/>
+  <ns1:parameter name="wsdlServiceElement" value="CreateEmployeeAccountServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns18:CreateEmployeeAccountOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:administrator.CreateEmployeeAccountOutput" xmlns:ns18="http://administrator"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:CreateEmployeeAccountInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:administrator.CreateEmployeeAccountInput" xmlns:ns19="http://administrator"/>
+ </ns1:service>
+ <ns1:service name="TransferMoneyService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="transferMoneyService" qname="ns20:transferMoneyService" returnQName="ns20:transferMoneyServiceReturn" returnType="ns20:TransferMoneyOutput" soapAction="" xmlns:ns20="http://Customer">
+   <ns1:parameter qname="ns20:input" type="ns20:TransferMoneyInput"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="transferMoneyService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="TransferMoneyService"/>
+  <ns1:parameter name="className" value="Customer.TransferMoneyService"/>
+  <ns1:parameter name="wsdlServicePort" value="TransferMoneyService"/>
+  <ns1:parameter name="schemaQualified" value="http://Customer"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://Customer"/>
+  <ns1:parameter name="wsdlServiceElement" value="TransferMoneyServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:TransferMoneyInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:Customer.TransferMoneyInput" xmlns:ns21="http://Customer"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:TransferMoneyOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:Customer.TransferMoneyOutput" xmlns:ns22="http://Customer"/>
+ </ns1:service>
+ <ns1:service name="PayBillService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="payBillService" qname="ns23:payBillService" returnQName="ns23:payBillServiceReturn" returnType="ns23:PayBillOutput" soapAction="" xmlns:ns23="http://Customer">
+   <ns1:parameter qname="ns23:input" type="ns23:PayBillInput"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="payBillService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="PayBillService"/>
+  <ns1:parameter name="className" value="Customer.PayBillService"/>
+  <ns1:parameter name="wsdlServicePort" value="PayBillService"/>
+  <ns1:parameter name="schemaQualified" value="http://Customer"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://Customer"/>
+  <ns1:parameter name="wsdlServiceElement" value="PayBillServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:PayBillOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:Customer.PayBillOutput" xmlns:ns24="http://Customer"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns25:PayBillInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:Customer.PayBillInput" xmlns:ns25="http://Customer"/>
+ </ns1:service>
+ <ns1:service name="WithdrawMoneyService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="withdrawMoneyService" qname="ns26:withdrawMoneyService" returnQName="ns26:withdrawMoneyServiceReturn" returnType="ns26:WithdrawMoneyOutput" soapAction="" xmlns:ns26="http://account_teller">
+   <ns1:parameter qname="ns26:input" type="ns26:WithdrawMoneyInput"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="withdrawMoneyService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="WithdrawMoneyService"/>
+  <ns1:parameter name="className" value="account_teller.WithdrawMoneyService"/>
+  <ns1:parameter name="wsdlServicePort" value="WithdrawMoneyService"/>
+  <ns1:parameter name="schemaQualified" value="http://account_teller"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://account_teller"/>
+  <ns1:parameter name="wsdlServiceElement" value="WithdrawMoneyServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns27:WithdrawMoneyOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:account_teller.WithdrawMoneyOutput" xmlns:ns27="http://account_teller"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns28:WithdrawMoneyInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:account_teller.WithdrawMoneyInput" xmlns:ns28="http://account_teller"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

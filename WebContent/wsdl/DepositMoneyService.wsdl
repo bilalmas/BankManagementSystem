@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://account_teller" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://account_teller" xmlns:intf="http://account_teller" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://account_teller" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="depositMoneyService">
+    <complexType>
+     <sequence>
+      <element name="input" type="impl:DepositMoneyInput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="DepositMoneyInput">
+    <sequence>
+     <element name="account_no" type="xsd:int"/>
+     <element name="deposit_amount" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <element name="depositMoneyServiceResponse">
+    <complexType>
+     <sequence>
+      <element name="depositMoneyServiceReturn" type="impl:DepositMoneyOutput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="DepositMoneyOutput">
+    <sequence>
+     <element name="response" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="depositMoneyServiceRequest">
+
+      <wsdl:part element="impl:depositMoneyService" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="depositMoneyServiceResponse">
+
+      <wsdl:part element="impl:depositMoneyServiceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="DepositMoneyService">
+
+      <wsdl:operation name="depositMoneyService">
+
+         <wsdl:input message="impl:depositMoneyServiceRequest" name="depositMoneyServiceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:depositMoneyServiceResponse" name="depositMoneyServiceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="DepositMoneyServiceSoapBinding" type="impl:DepositMoneyService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="depositMoneyService">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="depositMoneyServiceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="depositMoneyServiceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="DepositMoneyServiceService">
+
+      <wsdl:port binding="impl:DepositMoneyServiceSoapBinding" name="DepositMoneyService">
+
+         <wsdlsoap:address location="http://localhost:8080/bankingWS/services/DepositMoneyService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

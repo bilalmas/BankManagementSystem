@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://Customer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://Customer" xmlns:intf="http://Customer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://Customer" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="generateBankStatementService">
+    <complexType>
+     <sequence>
+      <element name="input" type="impl:GenerateBankStatementInput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="GenerateBankStatementInput">
+    <sequence>
+     <element name="account_no" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <element name="generateBankStatementServiceResponse">
+    <complexType>
+     <sequence>
+      <element name="generateBankStatementServiceReturn" type="impl:GenerateBankStatementOutput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="GenerateBankStatementOutput">
+    <sequence>
+     <element name="bankstatement" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="generateBankStatementServiceResponse">
+
+      <wsdl:part element="impl:generateBankStatementServiceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="generateBankStatementServiceRequest">
+
+      <wsdl:part element="impl:generateBankStatementService" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="GenerateBankStatementService">
+
+      <wsdl:operation name="generateBankStatementService">
+
+         <wsdl:input message="impl:generateBankStatementServiceRequest" name="generateBankStatementServiceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:generateBankStatementServiceResponse" name="generateBankStatementServiceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="GenerateBankStatementServiceSoapBinding" type="impl:GenerateBankStatementService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="generateBankStatementService">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="generateBankStatementServiceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="generateBankStatementServiceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="GenerateBankStatementServiceService">
+
+      <wsdl:port binding="impl:GenerateBankStatementServiceSoapBinding" name="GenerateBankStatementService">
+
+         <wsdlsoap:address location="http://localhost:8080/bankingWS/services/GenerateBankStatementService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

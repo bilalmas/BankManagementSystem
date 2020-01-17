@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://administrator" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://administrator" xmlns:intf="http://administrator" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://administrator" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="createEmployeeAccountService">
+    <complexType>
+     <sequence>
+      <element name="input" type="impl:CreateEmployeeAccountInput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CreateEmployeeAccountInput">
+    <sequence>
+     <element name="username" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="address" nillable="true" type="xsd:string"/>
+     <element name="dob" nillable="true" type="xsd:string"/>
+     <element name="gender" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="contact" nillable="true" type="xsd:string"/>
+     <element name="nationality" nillable="true" type="xsd:string"/>
+     <element name="salary" type="xsd:int"/>
+     <element name="csr_or_at" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="createEmployeeAccountServiceResponse">
+    <complexType>
+     <sequence>
+      <element name="createEmployeeAccountServiceReturn" type="impl:CreateEmployeeAccountOutput"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CreateEmployeeAccountOutput">
+    <sequence>
+     <element name="response" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="createEmployeeAccountServiceRequest">
+
+      <wsdl:part element="impl:createEmployeeAccountService" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createEmployeeAccountServiceResponse">
+
+      <wsdl:part element="impl:createEmployeeAccountServiceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CreateEmployeeAccountService">
+
+      <wsdl:operation name="createEmployeeAccountService">
+
+         <wsdl:input message="impl:createEmployeeAccountServiceRequest" name="createEmployeeAccountServiceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createEmployeeAccountServiceResponse" name="createEmployeeAccountServiceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CreateEmployeeAccountServiceSoapBinding" type="impl:CreateEmployeeAccountService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="createEmployeeAccountService">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createEmployeeAccountServiceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createEmployeeAccountServiceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CreateEmployeeAccountServiceService">
+
+      <wsdl:port binding="impl:CreateEmployeeAccountServiceSoapBinding" name="CreateEmployeeAccountService">
+
+         <wsdlsoap:address location="http://localhost:8080/bankingWS/services/CreateEmployeeAccountService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

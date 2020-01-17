@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from GenerateBankStatementServiceService WSDL service -->
+
+  <service name="GenerateBankStatementService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://Customer"/>
+      <parameter name="wsdlServiceElement" value="GenerateBankStatementServiceService"/>
+      <parameter name="schemaQualified" value="http://Customer"/>
+      <parameter name="wsdlServicePort" value="GenerateBankStatementService"/>
+      <parameter name="className" value="Customer.GenerateBankStatementServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="GenerateBankStatementService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="generateBankStatementService" qname="operNS:generateBankStatementService" xmlns:operNS="http://Customer" returnQName="retNS:generateBankStatementServiceReturn" xmlns:retNS="http://Customer" returnType="rtns:GenerateBankStatementOutput" xmlns:rtns="http://Customer" soapAction="" >
+        <parameter qname="pns:input" xmlns:pns="http://Customer" type="tns:GenerateBankStatementInput" xmlns:tns="http://Customer"/>
+      </operation>
+      <parameter name="allowedMethods" value="generateBankStatementService"/>
+
+      <typeMapping
+        xmlns:ns="http://Customer"
+        qname="ns:GenerateBankStatementOutput"
+        type="java:Customer.GenerateBankStatementOutput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://Customer"
+        qname="ns:GenerateBankStatementInput"
+        type="java:Customer.GenerateBankStatementInput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ActivateOnlineBankServiceService WSDL service -->
+
+  <service name="ActivateOnlineBankService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://Customer"/>
+      <parameter name="wsdlServiceElement" value="ActivateOnlineBankServiceService"/>
+      <parameter name="schemaQualified" value="http://Customer"/>
+      <parameter name="wsdlServicePort" value="ActivateOnlineBankService"/>
+      <parameter name="className" value="Customer.ActivateOnlineBankService"/>
+      <parameter name="wsdlPortType" value="ActivateOnlineBankService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://Customer" xmlns:retNS="http://Customer" xmlns:rtns="http://Customer" name="activateOnlineBanking" qname="operNS:activateOnlineBanking" returnQName="retNS:activateOnlineBankingReturn" returnType="rtns:ActivateOnlineBankOutput" soapAction="">
+        <parameter xmlns:pns="http://Customer" xmlns:tns="http://Customer" qname="pns:input" type="tns:ActivateOnlineBankInput"/>
+      </operation>
+      <parameter name="allowedMethods" value="activateOnlineBanking"/>
+
+      <typeMapping xmlns:ns="http://Customer" qname="ns:ActivateOnlineBankInput" type="java:Customer.ActivateOnlineBankInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://Customer" qname="ns:ActivateOnlineBankOutput" type="java:Customer.ActivateOnlineBankOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

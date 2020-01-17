@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from PayBillServiceService WSDL service -->
+
+  <service name="PayBillService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://Customer"/>
+      <parameter name="wsdlServiceElement" value="PayBillServiceService"/>
+      <parameter name="schemaQualified" value="http://Customer"/>
+      <parameter name="wsdlServicePort" value="PayBillService"/>
+      <parameter name="className" value="Customer.PayBillServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="PayBillService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="payBillService" qname="operNS:payBillService" xmlns:operNS="http://Customer" returnQName="retNS:payBillServiceReturn" xmlns:retNS="http://Customer" returnType="rtns:PayBillOutput" xmlns:rtns="http://Customer" soapAction="" >
+        <parameter qname="pns:input" xmlns:pns="http://Customer" type="tns:PayBillInput" xmlns:tns="http://Customer"/>
+      </operation>
+      <parameter name="allowedMethods" value="payBillService"/>
+
+      <typeMapping
+        xmlns:ns="http://Customer"
+        qname="ns:PayBillOutput"
+        type="java:Customer.PayBillOutput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://Customer"
+        qname="ns:PayBillInput"
+        type="java:Customer.PayBillInput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

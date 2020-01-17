@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from RemoveEmployeeAccountServiceService WSDL service -->
+
+  <service name="RemoveEmployeeAccountService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://administrator"/>
+      <parameter name="wsdlServiceElement" value="RemoveEmployeeAccountServiceService"/>
+      <parameter name="schemaQualified" value="http://administrator"/>
+      <parameter name="wsdlServicePort" value="RemoveEmployeeAccountService"/>
+      <parameter name="className" value="administrator.RemoveEmployeeAccountServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="RemoveEmployeeAccountService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="removeEmployeeAccountService" qname="operNS:removeEmployeeAccountService" xmlns:operNS="http://administrator" returnQName="retNS:removeEmployeeAccountServiceReturn" xmlns:retNS="http://administrator" returnType="rtns:RemoveEmployeeAccountOutput" xmlns:rtns="http://administrator" soapAction="" >
+        <parameter qname="pns:input" xmlns:pns="http://administrator" type="tns:RemoveEmployeeAccountInput" xmlns:tns="http://administrator"/>
+      </operation>
+      <parameter name="allowedMethods" value="removeEmployeeAccountService"/>
+
+      <typeMapping
+        xmlns:ns="http://administrator"
+        qname="ns:RemoveEmployeeAccountOutput"
+        type="java:administrator.RemoveEmployeeAccountOutput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://administrator"
+        qname="ns:RemoveEmployeeAccountInput"
+        type="java:administrator.RemoveEmployeeAccountInput"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from TransferMoneyServiceService WSDL service -->
+
+  <service name="TransferMoneyService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://Customer"/>
+      <parameter name="wsdlServiceElement" value="TransferMoneyServiceService"/>
+      <parameter name="schemaQualified" value="http://Customer"/>
+      <parameter name="wsdlServicePort" value="TransferMoneyService"/>
+      <parameter name="className" value="Customer.TransferMoneyService"/>
+      <parameter name="wsdlPortType" value="TransferMoneyService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://Customer" xmlns:retNS="http://Customer" xmlns:rtns="http://Customer" name="transferMoneyService" qname="operNS:transferMoneyService" returnQName="retNS:transferMoneyServiceReturn" returnType="rtns:TransferMoneyOutput" soapAction="">
+        <parameter xmlns:pns="http://Customer" xmlns:tns="http://Customer" qname="pns:input" type="tns:TransferMoneyInput"/>
+      </operation>
+      <parameter name="allowedMethods" value="transferMoneyService"/>
+
+      <typeMapping xmlns:ns="http://Customer" qname="ns:TransferMoneyInput" type="java:Customer.TransferMoneyInput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://Customer" qname="ns:TransferMoneyOutput" type="java:Customer.TransferMoneyOutput" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
